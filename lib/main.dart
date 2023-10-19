@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -57,15 +61,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  void _incrementCounter() async {
+   // setState(() async {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+      var databasesPath = await getDatabasesPath();
+      String path = join(databasesPath, 'demo.db');
+
+// Delete the database
+      await deleteDatabase(path);
+
+// open the database
+      Database database = await openDatabase(path, version: 1,
+          onCreate: (Database db, int version) async {
+            // When creating the db, create the table
+            await db.execute(
+                'CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, num REAL)');
+          });
+        print ("sdfd");
+     // _counter++;
+    //});
   }
 
   @override
