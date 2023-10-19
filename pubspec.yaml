@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # DB Access library
-  sqflite: ^2.0.0+3
+  sqflite: ^2.3.0
   sqlite3_flutter_libs: ^0.5.17
   sqflite_common_ffi: ^2.3.0+2
 
@@ -47,7 +47,6 @@ dependencies:
       url: https://gitlab.com/omprussia/flutter/flutter-plugins.git
       ref: master
       path: packages/sqflite/sqflite_aurora
-
 
 dev_dependencies:
   flutter_test:
